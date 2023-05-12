@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Info</title>
+    <th:block th:replace="~{layout :: Link-css}"></th:block>
+
+</head>
+<body>
+<th:block th:replace="~{layout :: header}"></th:block>
+
+<h1>User Info</h1>
+<p>Username: <span th:text="${username}"></span></p>
+<p>Roles: <span th:text="${roles}"></span></p>
+<p>Current Time: <span th:text="${#temporals.format(currentTime, 'dd/MM/yyyy HH:mm:ss')}"></span></p>
+<p>IP Address: <span th:text="${ipAddress}"></span></p>
+
+<th:block th:replace="~{layout :: footer}"></th:block>
+
+</body>
+</html>

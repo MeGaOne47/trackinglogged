@@ -1,0 +1,47 @@
+/* Định dạng cho thẻ HTML hiển thị các tin nhắn *//*
+
+#chat-messages {
+    height: 200px;
+    overflow-y: scroll;
+}
+
+*/
+/* Định dạng cho ô nhập liệu *//*
+
+#chat-input {
+    width: 100%;
+}
+*/
+
+/*
+
+*/
+/* Định dạng cho thẻ HTML hiển thị các tin nhắn *//*
+
+#chat-messages {
+    height: 200px;
+    overflow-y: scroll;
+}
+
+*/
+/* Định dạng cho ô nhập liệu *//*
+
+#chat-input {
+    width: 100%;
+}
+*/
+
+
+/* Định dạng cho thẻ HTML hiển thị các tin nhắn */
+#chat-messages {
+    height: 200px;
+    overflow-y: scroll;
+    background-color: #ccc; /* Màu xám */
+}
+
+/* Định dạng cho ô nhập liệu */
+#chat-input {
+    width: 100%;
+    background-color: #fff; /* Màu trắng */
+}
+

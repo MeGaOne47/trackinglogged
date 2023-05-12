@@ -1,0 +1,102 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org"-->
+<!--      xmlns:sec="http://www.springframework.org/schema/security"-->
+<!--      lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>My Book List</title>-->
+<!--    <th:block th:replace="layout :: Link-css"></th:block>-->
+<!--</head>-->
+<!--<body>-->
+<!--<th:block th:replace="layout :: header"></th:block>-->
+<!--<div class="container">-->
+<!--    <h1>My Book List</h1>-->
+<!--    <div th:if="${successMessage}">-->
+<!--        <div class="alert alert-success" th:text="${successMessage}"></div>-->
+<!--    </div>-->
+<!--    <table class="table">-->
+<!--        <tr>-->
+<!--            <th>ID</th>-->
+<!--            <th>Title</th>-->
+<!--            <th>Author</th>-->
+<!--            <th>Price</th>-->
+<!--            <th>Category</th>-->
+<!--            <th>Action</th>-->
+<!--        </tr>-->
+<!--        <tr th:each="book: ${books}">-->
+<!--            <td th:text="${book.id}"></td>-->
+<!--            <td th:text="${book.title}"></td>-->
+<!--            <td th:text="${book.author}"></td>-->
+<!--            <td th:text="${book.price}"></td>-->
+<!--            <td th:text="${book.category != null ? book.category.name : 'N/A'}"></td>-->
+<!--            <td>-->
+<!--                <div sec:authorize="hasAnyAuthority('ADMIN')">-->
+<!--                    <a th:href="@{/books/edit(id=${book.id})}" class="text-info">Edit</a>-->
+<!--                    <a th:href="@{/books/delete(id=${book.id})}" onclick="deleteBook(this); return false;" class="text-danger">Delete</a>-->
+<!--                </div>-->
+<!--                <div sec:authorize="!hasAnyAuthority('ADMIN')">-->
+<!--                    <span class="text-muted">Not authorized</span>-->
+<!--                </div>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--    </table>-->
+<!--</div>-->
+<!--<th:block th:replace="layout :: footer"></th:block>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/schema/security">
+<head>
+    <meta charset="UTF-8">
+    <title>My Book List</title>
+    <th:block th:replace="layout :: Link-css"></th:block>
+</head>
+<body>
+<th:block th:replace="layout :: header"></th:block>
+<div class="container">
+    <h1>My Book List</h1>
+    <div th:if="${successMessage}">
+        <div class="alert alert-success" th:text="${successMessage}"></div>
+    </div>
+
+<!--    <div th:if="${successMessage}">-->
+<!--        <div class="alert alert-success">-->
+<!--            <th:block th:text="${successMessage}"></th:block>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th sec:authorize="hasAnyAuthority('AD')">Action</th>
+        </tr>
+        <tr th:each="book : ${books}">
+            <td th:text="${book.id}"></td>
+            <td th:text="${book.title}"></td>
+            <td th:text="${book.author}"></td>
+            <td th:text="${book.price}"></td>
+            <td th:text="${book.category != null ? book.category.name : 'N/A'}"></td>
+
+            <td sec:authorize="hasAnyAuthority('ADMIN')">
+                <a th:href="@{/books/edit/{id}(id=${book.id})}" class="btn btn-primary">Edit</a>
+                <a th:href="@{/books/delete/{id}(id=${book.id})}" onclick="return confirm('Are you sure?')" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        <div sec:authorize="!hasAnyAuthority('ADMIN')">
+            <span class="text-muted">Not authorized</span>
+        </div>
+    </table>
+</div>
+
+<th:block th:replace="layout :: footer"></th:block>
+</body>
+</html>
